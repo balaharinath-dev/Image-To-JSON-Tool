@@ -6,7 +6,7 @@ st.title('Medical Form Images -> JSON 📄')
 
 uploaded_file = st.file_uploader('Upload your Image', type=['jpg', 'jpeg', 'png'])
 
-st.text_input('Enter the language to translate')
+language = st.text_input('Enter the language to translate')
 
 if uploaded_file and st.button('Convert'):
 
@@ -33,7 +33,7 @@ if uploaded_file and st.button('Convert'):
                 content=[
                     {
                         'type': 'text',
-                        'text': 'You are an expert AI who extracts data from the provided jpg of medical form and then construct and return a json object in a most suitable way!'
+                        'text': 'You are an expert AI who extracts data from the provided jpg of medical form and then construct and return a json object in a most suitable way and also translates the json content into the mentioned language!'
                     }
                 ]
             ),
@@ -41,7 +41,7 @@ if uploaded_file and st.button('Convert'):
                 content=[
                     {
                         'type': 'text',
-                        'text': 'Extract the printed as well as handwritten contents from the following image and return a suitable json object'
+                        'text': f'Extract the printed as well as handwritten contents from the following image and return a suitable json object and translate to {language}'
                     },
                     {
                         'type': 'image_url',
@@ -56,7 +56,7 @@ if uploaded_file and st.button('Convert'):
 
     chain = template | llm | parser
 
-    response = chain.invoke({'base64_image': base64_image})
+    response = chain.invoke({'base64_image': base64_image},'language':language)
 
     col1, col2 = st.columns([1,1])
 
