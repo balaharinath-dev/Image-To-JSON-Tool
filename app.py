@@ -96,7 +96,7 @@ if uploaded_file and st.button('Convert'):
 
     summary_parser = StrOutputParser()
 
-    summary_chain = summary_template | llm | parser
+    summary_chain = summary_template | llm | summary_parser
 
     summary_response = summary_chain.invoke({'response': str(response),'language':language})
 
