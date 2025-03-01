@@ -56,7 +56,7 @@ if uploaded_file and st.button('Convert'):
 
     chain = template | llm | parser
 
-    response = chain.invoke({'base64_image': base64_image},'language':language)
+    response = chain.invoke({'base64_image': base64_image,'language':language})
 
     col1, col2 = st.columns([1,1])
 
