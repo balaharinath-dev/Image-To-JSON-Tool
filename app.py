@@ -85,13 +85,7 @@ if uploaded_file and st.button('Convert'):
                 content=[
                     {
                         'type': 'text',
-                        'text': f'Summarize into brief bullet points in medical context for the given json translated in {language}.'
-                    },
-                    {
-                        'type': 'image_url',
-                        'image_url': {
-                            'url': f'data:image/jpeg;base64,{base64_image}'
-                        }
+                        'text': f'Summarize into brief bullet points in medical context for the given json translated in {language}: \n {response}.'
                     }
                 ]
             )
@@ -104,7 +98,7 @@ if uploaded_file and st.button('Convert'):
 
     summary_chain = summary_template | llm | parser
 
-    summary_response = summary_chain.invoke({'base64_image': base64_image,'language':language})
+    summary_response = summary_chain.invoke({'response': str(response),'language':language})
 
     st.header('Summary')
 
