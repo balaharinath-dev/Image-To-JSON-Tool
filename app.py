@@ -41,7 +41,7 @@ if uploaded_file and st.button('Convert'):
                 content=[
                     {
                         'type': 'text',
-                        'text': f'Extract the printed as well as handwritten contents from the following image and return a translated suitable json object in {language}. If possible is there any field which can hold calculations like age and other parameters (put them in a separate attribute called additionals)'
+                        'text': f'Extract the printed as well as handwritten contents from the following image and return a translated suitable json object stricly in {language}. If possible is there any field which can hold calculations like age and other parameters (put them in a separate attribute called additionals)'
                     },
                     {
                         'type': 'image_url',
