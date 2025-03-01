@@ -104,7 +104,7 @@ if uploaded_file and st.button('Convert'):
 
     summary_chain = summary_template | llm | parser
 
-    summary_response = summary_chain.invoke({{'base64_image': base64_image,'language':language}})
+    summary_response = summary_chain.invoke({'base64_image': base64_image,'language':language})
 
     st.header('Summary')
 
