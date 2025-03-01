@@ -6,6 +6,8 @@ st.title('Medical Form Images -> JSON 📄')
 
 uploaded_file = st.file_uploader('Upload your Image', type=['jpg', 'jpeg', 'png'])
 
+st.text_input('Enter the language to translate')
+
 if uploaded_file and st.button('Convert'):
 
     import base64
