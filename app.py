@@ -41,7 +41,7 @@ if uploaded_file and st.button('Convert'):
                 content=[
                     {
                         'type': 'text',
-                        'text': f'Extract the printed as well as handwritten contents from the following image and return a translated suitable json object in {language}'
+                        'text': f'Extract the printed as well as handwritten contents from the following image and return a translated suitable json object in {language}. If possible is there any field which can hold calculations like age and other parameters (put them in a separate attribute called additionals)'
                     },
                     {
                         'type': 'image_url',
@@ -70,3 +70,42 @@ if uploaded_file and st.button('Convert'):
     with col2:
         st.text("JSON Data")
         st.json(response)
+
+    summary_template = ChatPromptTemplate.from_messages(
+        [
+            SystemMessage(
+                content=[
+                    {
+                        'type': 'text',
+                        'text': 'You are an expert AI who summarizes briefly from a given json data into a small bullets which is purely in context of medical science and also translates them into suitable language!'
+                    }
+                ]
+            ),
+            HumanMessage(
+                content=[
+                    {
+                        'type': 'text',
+                        'text': f'Summarize into brief bullet points in medical context for the given json translated in {language}.'
+                    },
+                    {
+                        'type': 'image_url',
+                        'image_url': {
+                            'url': f'data:image/jpeg;base64,{base64_image}'
+                        }
+                    }
+                ]
+            )
+        ]
+    )
+
+    from langchain_core.output_parsers import StrOutputParser
+
+    summary_parser = StrOutputParser()
+
+    summary_chain = summary_template | llm | parser
+
+    summary_response = summary_chain.invoke({{'base64_image': base64_image,'language':language}})
+
+    st.header('Summary')
+
+    st.text(summary_response)
