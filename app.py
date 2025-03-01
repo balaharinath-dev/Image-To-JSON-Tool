@@ -77,7 +77,7 @@ if uploaded_file and st.button('Convert'):
                 content=[
                     {
                         'type': 'text',
-                        'text': 'You are an expert AI who summarizes briefly from a given json data into a small bullets which is purely in context of medical science and also translates them into suitable language!'
+                        'text': 'You are an expert AI who summarizes from a given json data into bullet points which is purely in context of medical science and also translates them into suitable language!'
                     }
                 ]
             ),
@@ -85,7 +85,7 @@ if uploaded_file and st.button('Convert'):
                 content=[
                     {
                         'type': 'text',
-                        'text': f'Summarize into brief bullet points in medical context for the given json translated in {language}: \n {response}.'
+                        'text': f'Summarize into bullet points in medical context for the given json translated in {language}: \n {response}.'
                     }
                 ]
             )
@@ -102,4 +102,4 @@ if uploaded_file and st.button('Convert'):
 
     st.header('Summary')
 
-    st.text(summary_response)
+    st.markdown(summary_response)
