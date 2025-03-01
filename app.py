@@ -41,7 +41,7 @@ if uploaded_file and st.button('Convert'):
                 content=[
                     {
                         'type': 'text',
-                        'text': f'Extract the printed as well as handwritten contents from the following image and return a suitable json object and translate to {language}'
+                        'text': f'Extract the printed as well as handwritten contents from the following image and return a translated suitable json object in {language}'
                     },
                     {
                         'type': 'image_url',
